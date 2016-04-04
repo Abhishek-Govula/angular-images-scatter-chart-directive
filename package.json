@@ -1,0 +1,15 @@
+{
+  "name": "chart_image_test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "express-installer": "^0.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

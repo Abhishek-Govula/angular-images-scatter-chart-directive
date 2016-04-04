@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+
+<!-- Example based on http://bl.ocks.org/mbostock/3887118 -->
+<!-- Tooltip example from http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html -->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap_sh.min.css">
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link href='css/my-scatter-chart.css' rel='stylesheet' type='text/css'>
+<style>
+body {
+  font-family: 'Roboto', sans-serif;
+}
+#svgContainer{
+  background-color: #fff;
+}
+#mySvg{
+  width: 100%;
+  height: 300px;
+}
+.no-pad{
+  padding-right: 0;
+}
+#left-nav{
+  height: 100vh;
+  background-color: #4E5D6C;
+  padding: 10px 5px;
+}
+.left-nav-items{
+  padding: 8px 5px;
+  border-bottom: 1px solid #928B8B;
+  margin-bottom: 1px;
+  background-color: #2B3E50;
+  font-size: 14px;
+  text-transform: lowercase;
+}
+</style>
+<body ng-app="sakpFarmApp">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Sakpfarm</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Page 1</a></li>
+        <li><a href="#">Page 2</a></li> 
+        <li><a href="#">Page 3</a></li> 
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2 no-pad">
+        <div id="left-nav">
+          <div class="left-nav-items">Item1</div>
+          <div class="left-nav-items">Item2</div>
+          <div class="left-nav-items">Item3</div>
+          <div class="left-nav-items">Item4</div>
+        </div>
+      </div>
+      <div class="col-sm-9" ng-controller="myController">
+        <div class="row">
+          <img-scatter-chart id="scatter-chart-1" chartheight=300 chartdata={{data}} config={{chartConfig}}></img-scatter-chart>
+        </div>
+      </div>
+      <div class="col-sm-1">
+      </div>
+    </div>
+  </div>
+  
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="shared/scatter-chart/imageScatterChart.js"></script>
+
+<script src="app.js"></script>
+<script>
+  //init();
+
+  function init(){
+    var xhttp;
+    if (window.XMLHttpRequest) {
+      xhttp = new XMLHttpRequest();
+      } else {
+      // code for IE6, IE5
+      xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    //Receive the data from the ajax call
+    xhttp.onreadystatechange = function() {
+      if (xhttp.readyState == 4 && xhttp.status == 200) {
+        var data = JSON.parse(xhttp.responseText);
+        console.log(data);
+        //drawScatterChart(data);
+      }
+    }
+    //Send the request to get the data from the server
+    var methodType = "GET";
+    var testDataUrl = "http://localhost:3000/testData";
+    var isAsync = true;
+    xhttp.open(methodType, testDataUrl, isAsync);
+    xhttp.send();
+  }
+</script>
+</body>
+</html>
