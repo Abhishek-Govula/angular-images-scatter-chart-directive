@@ -28,7 +28,7 @@ myApp.controller("myController", ['$scope','$http','$q', function($scope, $http,
 			left: 40
 		},
         ticks: {
-            xAxis: 3,
+            xAxis: 5,
             yAxis: 5
         },
         images: [

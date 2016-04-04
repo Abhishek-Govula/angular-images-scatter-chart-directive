@@ -11,47 +11,73 @@ Here are the parameters which can/should be added to the config object
 <table>
     <tr>
         <th>Variable Name</th>
+        <th>Datatype</th>
         <th>Default Value</th>
         <th>Required</th>
     </tr>
     <tr>
-        <td>Namastey</td>
-        <td>Maa</td>
-        <td>Mallanna</td>
+        <td>timeseries</td>
+        <td>boolean</td>
+        <td>false</td>
+        <td>Optional</td>
     </tr>
-</table>
-timeseries - boolean(true) Optional
-label - Object{xAxis-String,yAxis-String} Required
-    xAxis
-		label: {
-			xAxis: "Time",
-			yAxis: "Stages"
-		},
-		margin: {
+    <tr>
+        <td>label</td>
+        <td>Object</td>
+        <td>label: {
+			xAxis: "x-axis",
+			yAxis: "y-axis"
+		}</td>
+        <td>Optional</td>
+    </tr>
+    <tr>
+        <td>margin</td>
+        <td>Object</td>
+        <td>margin: {
 			top: 20, 
-			right: 20, 
-			bottom: 30, 
-			left: 40
-		},
-        ticks: {
+            right: 20, 
+            bottom: 30, 
+            left: 30
+		}</td>
+        <td>Optional</td>
+    </tr>
+    <tr>
+        <td>ticks</td>
+        <td>Object</td>
+        <td>ticks: {
             xAxis: 3,
             yAxis: 5
-        },
-        images: [
+        }
+		}</td>
+        <td>Optional</td>
+    </tr>
+    <tr>
+        <td>images</td>
+        <td>Array[Objects]</td>
+        <td>images: [
             {
-                id: "tree",
-                url: "images/tree.png"
-            },{
-                id: "sapling",
-                url: "images/sapling.jpg"
-            },{
-                id: "plant",
-                url: "images/plant.png"
-            },{
-                id: "flower",
-                url: "images/flower.png"
-            }
-        ],
-        animationDuration: 300,
-        animRadius: 6,
-        circleRadius: 20
+                id: "imageId",
+                url: "images/image.png"
+            },....
+		]</td>
+        <td>Required</td>
+    </tr>
+    <tr>
+        <td>animationDuration</td>
+        <td>number(integer)</td>
+        <td>500</td>
+        <td>Optional</td>
+    </tr>
+    <tr>
+        <td>animRadius</td>
+        <td>number(integer)</td>
+        <td>4</td>
+        <td>Optional</td>
+    </tr>
+    <tr>
+        <td>circleRadius</td>
+        <td>number(integer)</td>
+        <td>20</td>
+        <td>Optional</td>
+    </tr>
+</table>

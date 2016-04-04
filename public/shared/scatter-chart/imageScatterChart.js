@@ -42,11 +42,11 @@ angular.module('customChart', [])
 			}
 			function updateChart(data, config){
                 // Configurations
-				var xAxisLabel = config.label.xAxis;
-				var yAxisLabel = config.label.yAxis;
+				var xAxisLabel = (config.label!=null)?(config.label.xAxis!=null)?config.label.xAxis:"x-axis":"x-axis";
+				var yAxisLabel = (config.label!=null)?(config.label.yAxis!=null)?config.label.yAxis:"y-axis":"y-axis";
 				var configMargin = config.margin;
-				var xAxisTicks = config.ticks.xAxis;
-				var yAxisTicks = config.ticks.yAxis;
+				var xAxisTicks = (config.ticks!=null)?(config.ticks.xAxis!=null)?config.ticks.xAxis:5:5;
+				var yAxisTicks = (config.ticks!=null)?(config.ticks.yAxis!=null)?config.ticks.yAxis:5:5;
                 var imagesArray = config.images;
                 var timeseries = (config.timeseries!=null)?config.timeseries:false;
                 
