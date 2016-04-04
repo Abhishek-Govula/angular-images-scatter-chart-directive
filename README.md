@@ -8,6 +8,18 @@ Also include the [css](https://github.com/Abhishek-Govula/repo1/tree/master/publ
 
 Here are the parameters which can/should be added to the config object
 
+<table>
+    <tr>
+        <th>Variable Name</th>
+        <th>Default Value</th>
+        <th>Required</th>
+    </tr>
+    <tr>
+        <td>Namastey</td>
+        <td>Maa</td>
+        <td>Mallanna</td>
+    </tr>
+</table>
 timeseries - boolean(true) Optional
 label - Object{xAxis-String,yAxis-String} Required
     xAxis
