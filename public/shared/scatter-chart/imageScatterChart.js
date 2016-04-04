@@ -65,16 +65,16 @@ angular.module('customChart', [])
                                     .attr("id", imagesArray[image].id)
                                     .attr("x", "0")
                                     .attr("y", "0")
-                                    .attr("height", "40")
-                                    .attr("width", "40");
+                                    .attr("height", config.circleRadius*2)
+                                    .attr("width", config.circleRadius*2);
                     //Creating the image inside the pattern
                     //<image x="0" y="0" width="40" height="40" xlink:href="images/drupal-icon.jpg"></image>
                     var patternNow = d3.select(atrString+" #mdef #"+imagesArray[image].id);
                     patternNow.append("image")
                                 .attr("x","0")
                                 .attr("y","0")
-                                .attr("height", "40")
-                                .attr("width", "40")
+                                .attr("height", config.circleRadius*2)
+                                .attr("width", config.circleRadius*2)
                                 .attr("xlink:href", imagesArray[image].url);
                 }
 
@@ -193,8 +193,10 @@ angular.module('customChart', [])
                     //varibles for on hover animations
                     var horizontalLine = null;
                     var verticalLine = null;
-                    var animationDuration = 500;
-                    var animRadius = 4;
+                    var animationDuration = (config.animationDuration!=null)?config.animationDuration:500;
+                    var animRadius = (config.animRadius!=null)?config.animRadius:4;
+                    var circleRadius = (config.circleRadius!=null)?config.circleRadius:20;
+                    
 					// draw dots
 					svg.selectAll(".dot")
 					    .data(data)
@@ -208,7 +210,7 @@ angular.module('customChart', [])
 					      }
 					      return "dot"+" dot-"+actionClass;
 					    })
-					    .attr("r", 20)
+					    .attr("r", circleRadius)
 					    .attr("cx", xMap)
 					    .attr("cy", yMap)
 					    //.style("fill", function(d) { return color(cValue(d));})
@@ -270,13 +272,13 @@ angular.module('customChart', [])
 					    })
 					    .on("mouseout", function(d) {
                             horizontalLine.transition()
-                                        .duration(500)
+                                        .duration(animationDuration)
                                         .style("opacity", 0);
                             verticalLine.transition()
-                                        .duration(500)
+                                        .duration(animationDuration)
                                         .style("opacity", 0);
                             tooltip.transition()
-                                .duration(500)
+                                .duration(animationDuration)
                                 .style("opacity", 0);
                                 
                             circleAnimation(this, false);
@@ -298,12 +300,12 @@ angular.module('customChart', [])
                                 
                                 d3.select("#"+fillId+">image")
                                     .transition()
-                                    .duration(300)
+                                    .duration(animationDuration)
                                     .attr("x", animRadius)
                                     .attr("y", animRadius);
                                 d3.select(elem)
                                     .transition()
-                                    .duration(300)
+                                    .duration(animationDuration)
                                     .attr("r",parseInt($(elem).attr("r"))+animRadius);
                             }else{
                                 //Adding the hover style to the circle
@@ -317,13 +319,13 @@ angular.module('customChart', [])
                                 
                                 d3.select("#"+fillId+">image")
                                     .transition()
-                                    .duration(300)
+                                    .duration(animationDuration)
                                     .attr("x", 0)
                                     .attr("y", 0)
                                 d3.select(elem)
                                     .transition()
-                                    .duration(300)
-                                    .attr("r",20);
+                                    .duration(animationDuration)
+                                    .attr("r",circleRadius);
                             }
                         }
 

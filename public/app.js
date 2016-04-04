@@ -44,7 +44,10 @@ myApp.controller("myController", ['$scope','$http','$q', function($scope, $http,
                 id: "flower",
                 url: "images/flower.png"
             }
-        ]
+        ],
+        animationDuration: 300,
+        animRadius: 6,
+        circleRadius: 20
 	};
 
 	$http({
