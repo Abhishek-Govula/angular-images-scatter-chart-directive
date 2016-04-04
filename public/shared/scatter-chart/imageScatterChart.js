@@ -8,13 +8,21 @@ angular.module('customChart', [])
 		templateUrl: currentScriptPath.replace('imageScatterChart.js', 'img-scatter-chart.html'),
 		link: function(scope, element, attr){
 			scope.$watch('data', function(newVal, oldVal){
-				
-				var config = JSON.parse(attr.config);
-				updateChart(newVal, config);
+                if(attr.config!=null && attr.config.length!=0){
+                    var config = JSON.parse(attr.config);
+				    updateChart(newVal, config);   
+                }
 			});
+            scope.$watch('config', function(newVal, oldVal){
+                if(attr.data!=null && attr.data.length!=0){
+                    var data = JSON.parse(attr.data);    
+                    updateChart(data, newVal);
+                }
+			});
+            
 			element.id = attr.id;
 			if(attr.chartdata==null || attr.chartdata.length==0){
-				alert("Data not in right format");
+				console.log("Data not in right format");
 			}else{
 				var data = JSON.parse(attr.chartdata);
 				var config = JSON.parse(attr.config);
@@ -40,6 +48,7 @@ angular.module('customChart', [])
 				var xAxisTicks = config.ticks.xAxis;
 				var yAxisTicks = config.ticks.yAxis;
                 var imagesArray = config.images;
+                var timeseries = (config.timeseries!=null)?config.timeseries:false;
                 
                 var svgElement = $(element).children().find("svg").first();
 				svgElement.width = attr.chartwidth;
@@ -100,7 +109,9 @@ angular.module('customChart', [])
 				  
 				  xAxis.ticks(xAxisTicks);
 				  xAxis.tickFormat(function(d){
-				  	return getFormattedTime(d);
+                      if(timeseries)
+				  	    return getFormattedTime(d);
+                      return d;
 				  });
 				  													
 				// setup the y-axis
@@ -216,7 +227,7 @@ angular.module('customChart', [])
 					    //.style("fill", function(d) { return color(cValue(d));})
 					    .style("fill", function(d) { 
                             //Here we fill in the image that was given in the defs
-					        return "url(#"+d.image_name+")";
+					        return "url(#"+d.imageId+")";
 					    })
 					    .on("mouseover", function(d) {
 					      tooltip.transition()
@@ -296,7 +307,6 @@ angular.module('customChart', [])
                                 //Changing the position of the image filled as well as the radius of the circle
                                 var currentFill = $(elem).css("fill").replace(/"/g, '');
                                 var fillId = currentFill.substring(currentFill.indexOf("#")+1, currentFill.indexOf(")"));
-                                console.log(fillId);
                                 
                                 d3.select("#"+fillId+">image")
                                     .transition()
@@ -309,13 +319,11 @@ angular.module('customChart', [])
                                     .attr("r",parseInt($(elem).attr("r"))+animRadius);
                             }else{
                                 //Adding the hover style to the circle
-                                console.log("Existing: "+$(elem).attr("class"));
                                 d3.select(elem)
                                     .attr("class", $(elem).attr("class").replace(/ dot-hover/g, ''));
                                 //Making everything else to default size on mouse out
                                 var currentFill = $(elem).css("fill").replace(/"/g, '');
                                 var fillId = currentFill.substring(currentFill.indexOf("#")+1, currentFill.indexOf(")"));
-                                console.log(fillId);
                                 
                                 d3.select("#"+fillId+">image")
                                     .transition()

@@ -35,19 +35,19 @@ function sendSampleData2(req, res){
 	    "title": "New",
 	    "xValue": 1459490422000 ,
 	    "yValue": 5,
-	    "image_name": "plant",
+	    "imageId": "plant",
 	    "action": "danger"
 	  },{
         "title": "Sample",
         "xValue": 1459490450000,
         "yValue": 7,
-        "image_name": "tree",
+        "imageId": "tree",
         "action": "danger"
         },{
         "title": "Test Header",
         "xValue": 1459490455000,
         "yValue": 6,
-        "image_name": "flower",
+        "imageId": "flower",
         "action": "safe"
         }
     ];
@@ -58,25 +58,25 @@ function sendSampleData(req, res){
     "title": "100%_Bran",
     "xValue": 1459490436000 ,
     "yValue": 1,
-    "image_name": "tree",
+    "imageId": "tree",
     "action": "safe"
   },{
     "title": "100%_Natural_Bran",
     "xValue": 1459490444000,
     "yValue": 2,
-    "image_name": "sapling",
+    "imageId": "sapling",
     "action": "warning"
   },{
     "title": "All-Bran",
     "xValue": 1459490450000,
     "yValue": 3,
-    "image_name": "plant",
+    "imageId": "plant",
     "action": "danger"
   },{
     "title": "All-Bran_with_Extra_Fiber",
     "xValue": 1459490455000,
     "yValue": 4,
-    "image_name": "flower",
+    "imageId": "flower",
     "action": "safe"
   }
   ];

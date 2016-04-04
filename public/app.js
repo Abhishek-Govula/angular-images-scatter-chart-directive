@@ -16,6 +16,7 @@ myApp.service("myService", [function(){
 myApp.controller("myController", ['$scope','$http','$q', function($scope, $http, $q){
 
 	$scope.chartConfig = {
+        timeseries: true,
 		label: {
 			xAxis: "Time",
 			yAxis: "Stages"
@@ -72,12 +73,12 @@ myApp.controller("myController", ['$scope','$http','$q', function($scope, $http,
             },
             {
                 id: "flower",
-                url: "images/plant.png"
+                url: "images/sapling.jpg"
             },
             {
                 id: "tree",
                 url: "images/tree.png"
-            }]
+            }];
 		}, function errorCallback(response) {
 			alert("Error while getting the data");
 			deferred.reject({error: "Error while getting the data"});
