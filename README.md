@@ -3,9 +3,10 @@ An application which uses Angular JS directive for rendering a D3.js scatter cha
 
 The directive is [here](https://github.com/Abhishek-Govula/repo1/tree/master/public/shared/scatter-chart)
 
-Requires Jquery, D3.js
-Also include the [css](https://github.com/Abhishek-Govula/repo1/tree/master/public/css/my-scatter-chart.css)
+Requires [Jquery](https://jquery.com/download/), [D3.js](https://d3js.org/)
+Don't forget to include the [style](https://github.com/Abhishek-Govula/repo1/tree/master/public/css/my-scatter-chart.css)
 
+D3js scatter chart inspired from [here](http://bl.ocks.org/weiglemc/6185069)
 <h3>Here are the parameters which can/should be added to the config object</h3>
 <table>
     <tr>

@@ -2,23 +2,36 @@ var scripts = document.getElementsByTagName("script")
 var currentScriptPath = scripts[scripts.length-1].src;
 
 angular.module('customChart', [])
-	.directive('imgScatterChart', [function(){
+	.directive('imgScatterChart', ['$window', function($window){
 	return{
 		restrict: 'E',
 		templateUrl: currentScriptPath.replace('imageScatterChart.js', 'img-scatter-chart.html'),
 		link: function(scope, element, attr){
-			scope.$watch('data', function(newVal, oldVal){
+			//Watchers for any data or configuration change
+            scope.$watch('data', function(newVal, oldVal){
                 if(attr.config!=null && attr.config.length!=0){
                     var config = JSON.parse(attr.config);
 				    updateChart(newVal, config);   
                 }
 			});
             scope.$watch('config', function(newVal, oldVal){
-                if(attr.data!=null && attr.data.length!=0){
-                    var data = JSON.parse(attr.data);    
+                if(attr.chartdata!=null && attr.chartdata.length!=0){
+                    var data = JSON.parse(attr.chartdata);    
                     updateChart(data, newVal);
                 }
 			});
+            
+            //updating the chart on the window resize
+            angular.element($window).bind('resize', function(){
+                if(attr.config!=null && attr.config.length!=0 && attr.chartdata!=null && attr.chartdata.length!=0){
+                    var config = JSON.parse(attr.config);
+                    var data = JSON.parse(attr.chartdata);
+				    updateChart(data, config);   
+                }
+                // manuall $digest required as resize event
+                // is outside of angular
+                scope.$digest();
+            });
             
 			element.id = attr.id;
 			if(attr.chartdata==null || attr.chartdata.length==0){
