@@ -81,7 +81,7 @@ Also include the [css](https://github.com/Abhishek-Govula/repo1/tree/master/publ
     </tr>
 </table>
 
-<h3>Here are the attributes for the directive<h3>
+<h3>Here are the attributes for the directive</h3>
 <table>
     <tr>
         <th>Attribute Name</th>
