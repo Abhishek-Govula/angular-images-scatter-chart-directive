@@ -8,18 +8,37 @@ angular.module('customChart', [])
 		templateUrl: currentScriptPath.replace('imageScatterChart.js', 'img-scatter-chart.html'),
 		link: function(scope, element, attr){
 			//Watchers for any data or configuration change
-            scope.$watch('data', function(newVal, oldVal){
-                if(attr.config!=null && attr.config.length!=0){
-                    var config = JSON.parse(attr.config);
-				    updateChart(newVal, config);   
-                }
-			});
-            scope.$watch('config', function(newVal, oldVal){
-                if(attr.chartdata!=null && attr.chartdata.length!=0){
-                    var data = JSON.parse(attr.chartdata);    
-                    updateChart(data, newVal);
-                }
-			});
+            scope.$watchGroup(['data','config'], function(newValues, oldValues, scope){
+               var data = newValues[0];
+               var config = newValues[1];
+               if(data==null){
+                   if(attr.data!=null){
+                       data = attr.data;
+                       if(typeof(data)==='string'){
+                            data = JSON.parse(data);
+                       }    
+                   }    
+               }else{
+                    if(typeof(data)==='string'){
+                        data = JSON.parse(data);
+                    }
+               }
+               if(config==null){
+                   if(attr.config!=null){
+                       config = attr.config;
+                       if(typeof(config)==='string'){
+                            config = JSON.parse(config);
+                       }    
+                   }    
+               }else{
+                    if(typeof(config)==='string'){
+                        config = JSON.parse(config);
+                    }
+               }
+               if(data!=null && config!=null){
+                   updateChart(data, config);
+               }
+            });
             
             //updating the chart on the window resize
             angular.element($window).bind('resize', function(){

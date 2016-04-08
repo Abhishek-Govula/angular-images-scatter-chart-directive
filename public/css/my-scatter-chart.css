@@ -1,9 +1,9 @@
 .scatter-chart-div{
   background-color: #fff;
 }
-.scatter-chart-div>svg{
+/*.scatter-chart-div>svg{
   height: auto;
-}
+}*/
 .axis{
   font-size: 14px;
 }
