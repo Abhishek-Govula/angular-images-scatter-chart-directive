@@ -84,5 +84,9 @@ myApp.controller("myController", ['$scope','$http','$q', function($scope, $http,
 			deferred.reject({error: "Error while getting the data"});
 		});
 	}, 3000);
+    
+    $scope.$on('scatterChartElem', function(event, args){
+       console.log(args); 
+    });
 }]);
 

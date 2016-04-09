@@ -233,6 +233,24 @@ angular.module('customChart', [])
 					    .style("text-anchor", "end")
 					    .text(yAxisLabel);
                         
+                    
+                    // Draw the x Grid lines
+					svg.append("g")
+					    .attr("class", "grid")
+					    .attr("transform", "translate(0," + height + ")")
+					    .call(make_x_axis()
+					        .tickSize(-height, 0, 0)
+					        .tickFormat("")
+					    );
+
+					// Draw the y Grid lines
+					svg.append("g")            
+					    .attr("class", "grid")
+					    .call(make_y_axis()
+					        .tickSize(-width, 0, 0)
+					        .tickFormat("")
+					    );
+                        
                     //varibles for on hover animations
                     var horizontalLine = null;
                     var verticalLine = null;
@@ -327,7 +345,8 @@ angular.module('customChart', [])
                             circleAnimation(this, false);
 					    })
 					    .on("click", function(d) {
-					      console.log(d);
+                            //On click, brodcasting the event to the controller where the directive is called
+                            scope.$emit('scatterChartElem', d);
 					    });
                         
                         function circleAnimation(elem, show){
@@ -390,23 +409,6 @@ angular.module('customChart', [])
 					    .attr("dy", ".35em")
 					    .style("text-anchor", "end")
 					    .text(function(d) { return d;});
-
-					 // Draw the x Grid lines
-					svg.append("g")
-					    .attr("class", "grid")
-					    .attr("transform", "translate(0," + height + ")")
-					    .call(make_x_axis()
-					        .tickSize(-height, 0, 0)
-					        .tickFormat("")
-					    );
-
-					// Draw the y Grid lines
-					svg.append("g")            
-					    .attr("class", "grid")
-					    .call(make_y_axis()
-					        .tickSize(-width, 0, 0)
-					        .tickFormat("")
-					    );
 				}
 			}
 		}
